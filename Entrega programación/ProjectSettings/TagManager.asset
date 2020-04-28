@@ -9,6 +9,7 @@ TagManager:
   - trap
   - rojo
   - coin
+  - ladder
   layers:
   - Default
   - TransparentFX

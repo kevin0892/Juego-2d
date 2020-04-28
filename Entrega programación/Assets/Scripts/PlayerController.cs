@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
     private float fuerzaX = 3000;
     [SerializeField]
     private float fuerzaSalto = 1880;
+
     [SerializeField]
-    private AudioSource jumpSFX;
-    bool canJump;
+    private AudioSource jumpSFX, deathSFX;
+    private bool canJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fuerzaX * Time.deltaTime, 0));
         }
-        if (Input.GetKeyDown("up") && canJump)
+        if (Input.GetKeyDown("up") && canJump == true)
         {
-            canJump = false;
+           
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,fuerzaSalto));
+            canJump = false;
+
             if (jumpSFX != null)
             {
                 jumpSFX.Play();
@@ -40,27 +43,28 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    //te amo
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canJump = false;
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.tag == "ground")
         {
             canJump = true;
         }
-        else
-        {
-            canJump = false;
-        }
+
         if (collision.transform.tag == "trap")
         {
             gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
+            if (deathSFX != null)
+            {
+                deathSFX.Play();
+            }
         }
-   
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "rojo")
-        {
 
-        }
+
     }
+
 }
