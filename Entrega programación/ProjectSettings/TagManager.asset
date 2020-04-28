@@ -8,6 +8,7 @@ TagManager:
   - check1
   - trap
   - rojo
+  - coin
   layers:
   - Default
   - TransparentFX

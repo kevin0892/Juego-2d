@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class coinController : MonoBehaviour
 {
-
+    [SerializeField]
+    private AudioSource coinSFX;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        coinSFX.Play();
         ScoreManager.scoreManager.RaiseScore(1);
-        gameObject.SetActive(false);
-        Destroy(gameObject);
+
+        transform.position = transform.position + new Vector3(-300, 0, 0); 
+
+        //if (coinSFX.isPlaying)
+        //{
+        //  gameObject.SetActive(false);
+        //Destroy(gameObject);
+        //}
+
     }
 }

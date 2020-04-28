@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private float fuerzaX = 3000;
     [SerializeField]
     private float fuerzaSalto = 1880;
+    [SerializeField]
+    private AudioSource jumpSFX;
     bool canJump;
     // Start is called before the first frame update
     void Start()
@@ -30,10 +32,15 @@ public class PlayerController : MonoBehaviour
         {
             canJump = false;
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,fuerzaSalto));
+            if (jumpSFX != null)
+            {
+                jumpSFX.Play();
+            }
+
         }
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.tag == "ground")
         {
@@ -47,6 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
         }
+   
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -55,5 +63,4 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
 }
