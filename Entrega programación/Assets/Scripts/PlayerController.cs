@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private float fuerzaEscalada;
+    [SerializeField]
     private float fuerzaX = 3000;
     [SerializeField]
     private float fuerzaSalto = 1880;
-
     [SerializeField]
     private AudioSource jumpSFX, deathSFX;
     private bool canJump;
+    private bool canScalate;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,13 +43,13 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        if (Input.GetKey("up")&& canScalate == true)
+        {
+            transform.position = transform.position+ new Vector3(0,fuerzaEscalada * Time.deltaTime, 0);
+        }
 
     }
-    //te amo
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        canJump = false;
-    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.tag == "ground")
@@ -63,8 +65,26 @@ public class PlayerController : MonoBehaviour
                 deathSFX.Play();
             }
         }
-
-
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "ladder")
+        {
+            canScalate = true;
+            Debug.Log("si la tocó");
+            GetComponent<Rigidbody2D>() ;
+            var body = GetComponent<Rigidbody2D>();
+            body.mass = 0.01f;
+        }
+    }
+    //te amo
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canJump = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canScalate = false;
     }
 
 }
