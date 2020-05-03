@@ -14,26 +14,59 @@ public class PlayerController : MonoBehaviour
     private AudioSource jumpSFX, deathSFX;
     private bool canJump;
     private bool canScalate;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
+
+        var parametrosdeEmision = new ParticleSystem.EmitParams();
+
+        parametrosdeEmision.position = GetComponent<Transform>().position;
+
+        gameObject.GetComponent<ParticleSystem>().Emit(parametrosdeEmision,14);
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+
         if (Input.GetKey("left"))
         {
+            if (canJump == true)
+            {
+                GetComponent<ParticleSystem>().Emit(1);
+            }
+        
+
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-fuerzaX * Time.deltaTime, 0));
         }
-        if (Input.GetKey("right")) 
+        else if (Input.GetKey("right"))
         {
+
+            if (canJump == true)
+            {
+                GetComponent<ParticleSystem>().Emit(1);
+            }
+
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fuerzaX * Time.deltaTime, 0));
         }
+             
+         
+        
+        
         if (Input.GetKeyDown("up") && canJump == true)
         {
-           
+            var parametrosdeEmision = new ParticleSystem.EmitParams();
+
+            parametrosdeEmision.velocity = new Vector3(0, 10, 0);
+
+           // parametrosdeEmision.position = GetComponent<Transform>().position;
+
+            GetComponent<ParticleSystem>().Emit(parametrosdeEmision,15);
+
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,fuerzaSalto));
             canJump = false;
 
@@ -55,6 +88,8 @@ public class PlayerController : MonoBehaviour
         if (collision.transform.tag == "ground")
         {
             canJump = true;
+
+            GetComponent<ParticleSystem>().Emit(4);
         }
 
         if (collision.transform.tag == "trap")
