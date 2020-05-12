@@ -7,9 +7,9 @@ TagManager:
   - ground
   - check1
   - trap
-  - rojo
   - coin
   - ladder
+  - metas
   layers:
   - Default
   - TransparentFX
