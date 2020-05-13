@@ -10,6 +10,8 @@ TagManager:
   - coin
   - ladder
   - metas
+  - rojo
+  - Barreraenemy
   layers:
   - Default
   - TransparentFX

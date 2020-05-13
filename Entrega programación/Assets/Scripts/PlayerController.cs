@@ -83,17 +83,21 @@ public class PlayerController : MonoBehaviour
 
             GetComponent<ParticleSystem>().Emit(4);
         }
+        
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.transform.tag == "trap")
         {
+           
+
             gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
             if (deathSFX != null)
             {
                 deathSFX.Play();
             }
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.transform.tag == "ground" && (collision.transform.tag == "ladder"))
         {
             canJump = false;

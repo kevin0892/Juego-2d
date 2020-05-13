@@ -9,14 +9,17 @@ public class coinController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        coinSFX.Play();
-        ScoreManager.scoreManager.RaiseScore(1);
+        if (collision.transform.tag == "Player")
+        {
+            coinSFX.Play();
+            ScoreManager.scoreManager.RaiseScore(1);
 
-        transform.position = transform.position + new Vector3(-300, 0, 0); 
+            transform.position = transform.position + new Vector3(-300, 0, 0);
+        }
+       
 
         //if (coinSFX.isPlaying)
-        //{
-        //  gameObject.SetActive(false);
+                //  gameObject.SetActive(false);
         //Destroy(gameObject);
         //}
 
