@@ -16,11 +16,17 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     private bool canScalate;
     private Rigidbody2D myRigidbody;
+    public GameObject respawn;
 
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        respawn = GameObject.FindWithTag("Spawnpoint");
+    }
     void Start()
     {
+        transform.position = respawn.transform.position;
         myRigidbody = GetComponent<Rigidbody2D>();
         //gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
 
@@ -90,9 +96,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.tag == "trap")
         {
-           
+            transform.position = respawn.transform.position;
 
-            gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
+            //gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
             if (deathSFX != null)
             {
                 deathSFX.Play();

@@ -5,13 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
-  - check1
   - trap
   - coin
   - ladder
   - metas
-  - rojo
   - Barreraenemy
+  - rojo
+  - Spawnpoint
   layers:
   - Default
   - TransparentFX
@@ -46,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3192130573
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
