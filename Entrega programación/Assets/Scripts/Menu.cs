@@ -17,5 +17,6 @@ public class Menu : MonoBehaviour
     public void JugarDeNuevo()
     {
         SceneManager.LoadScene(1);
+
     }
 }

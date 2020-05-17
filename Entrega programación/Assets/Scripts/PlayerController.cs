@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         respawn = GameObject.FindWithTag("Spawnpoint");
+        
     }
     void Start()
     {
@@ -119,6 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
