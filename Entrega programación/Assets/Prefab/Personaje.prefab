@@ -104,6 +104,7 @@ MonoBehaviour:
   fuerzaSalto: 2150
   jumpSFX: {fileID: 6715615525676488329}
   deathSFX: {fileID: 6715615525676488330}
+  respawn: {fileID: 0}
 --- !u!50 &6715615525676488327
 Rigidbody2D:
   serializedVersion: 4
@@ -978,7 +979,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: -4, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 10, y: 1, z: 1}
+    m_Scale: {x: 10, y: 0.9323566, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1046,7 +1047,8 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 28584486757587946, guid: 125cb55b44b24c4393181402bc6200e6,
+      type: 2}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0

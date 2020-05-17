@@ -14,4 +14,8 @@ public class Menu : MonoBehaviour
         Application.Quit();
         Debug.Log("Salió");
     }
+    public void JugarDeNuevo()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
