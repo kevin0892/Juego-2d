@@ -10,7 +10,7 @@ public class escape : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    //salir del juego cuando se toque la letra escape
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

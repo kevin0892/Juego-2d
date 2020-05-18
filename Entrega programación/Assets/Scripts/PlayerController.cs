@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource jumpSFX, deathSFX;
     private bool canJump;
     private bool canScalate;
+    // variable para luego acceder a la gravedad en las escaleras
     private Rigidbody2D myRigidbody;
     public GameObject respawn;
 
@@ -23,15 +24,17 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //encontrar un objeto con la tag spawnpoint para ponerlo en la variable anteriormente creada
         respawn = GameObject.FindWithTag("Spawnpoint");
         
     }
     void Start()
     {
+        // spawnear el jugador hacia la posición del spawnpoint al comenzar la escena
         transform.position = respawn.transform.position;
+        //acceder al componente rigidbody
         myRigidbody = GetComponent<Rigidbody2D>();
-        //gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
-
+        //sistema de particulas
         var parametrosdeEmision = new ParticleSystem.EmitParams();
 
         parametrosdeEmision.position = GetComponent<Transform>().position;
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //vovimiento del jugador
         if (Input.GetKey("left"))
         {
             if (canJump == true)
@@ -67,13 +71,12 @@ public class PlayerController : MonoBehaviour
 
             parametrosdeEmision.velocity = new Vector3(0, 10, 0);
 
-           // parametrosdeEmision.position = GetComponent<Transform>().position;
 
             GetComponent<ParticleSystem>().Emit(parametrosdeEmision,15);
 
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,fuerzaSalto));
             canJump = false;
-
+            // reproducir sonido cuando salte
             if (jumpSFX != null)
             {
                 jumpSFX.Play();
@@ -82,9 +85,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //poder saltar mientras está tocando un suelo con el tag de ground
         if (collision.transform.tag == "ground")
         {
             canJump = true;
@@ -96,11 +100,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //cuando el jugador toca una trampa va hacia donde aparece al principio, los enemigos también tienen esta tag
         if (collision.transform.tag == "trap")
         {
             transform.position = respawn.transform.position;
-
-            //gameObject.GetComponent<Transform>().position = new Vector3(-38.5f, -17.7f, 0f);
+            //sonido muerte
             if (deathSFX != null)
             {
                 deathSFX.Play();
@@ -118,6 +122,7 @@ public class PlayerController : MonoBehaviour
             canJump = false;
         }
         if (collision.transform.tag == "metas")
+            //cargar la siguiente escena cuando se toque la meta
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

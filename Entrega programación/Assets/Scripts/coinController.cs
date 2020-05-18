@@ -19,11 +19,13 @@ public class coinController : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
+            //activar el sonidito
             coinSFX.Play();
+            //acceder a la variable puntos de la clase llamada puntaje y cambiar su valor en 1 cada vez que toque al jugador
             Puntaje.puntos++;
-           // Puntos++;
-            //Debug.Log(Puntos);
+            //la cambio de lugar antes de destruirla porque quiero que reproduzca el sonido antes de que se destruya
             transform.position = transform.position + new Vector3(-300, 0, 0);
+            //aqui hago que la moneda se destruya despues de un segundo 
             Destroy(gameObject, 1F);
         }
      

@@ -14,6 +14,7 @@ public class controlenex : MonoBehaviour
     }
 
     // Update is called once per frame
+    // Esta es la movimiento hacia un eje en positivo
     void Update()
     {
         transform.Translate(velocidad *Time.deltaTime, 0, 0); 
